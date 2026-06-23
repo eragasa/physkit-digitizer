@@ -40,7 +40,14 @@ It does not implement thermodynamic phase-diagram analysis directly. Phase-diagr
 ## Installation
 
 ```bash
-pip install -e ".[dev]"
+python3 -m venv --prompt physkit-digitizer .venv
+source .venv/bin/activate
+```
+
+```bash
+python -m pip install --upgrade pip
+python -m pip install -e ".[dev]"
+```
 
 ## License
 Apache=2.0
