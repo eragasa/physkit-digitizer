@@ -183,6 +183,10 @@ dmypy.json
 # Cython debug symbols
 cython_debug/
 
+
+# VSC
+.DS_Store
+**/.DS_Store
 # PyCharm
 #   JetBrains specific template is maintained in a separate JetBrains.gitignore that can
 #   be found at https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore
@@ -219,6 +223,7 @@ __marimo__/
 # Streamlit
 .streamlit/secrets.toml
 
+
 # Data outputs
 data/digitized/*
 !data/digitized/.gitkeep
@@ -226,3 +231,7 @@ data/digitized/*
 # Large raw images by default
 data/raw/*
 !data/raw/.gitkeep
+
+# data private images, images are not public domain
+data/private/*
+~/data/private/.gitkeep
