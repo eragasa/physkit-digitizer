@@ -164,6 +164,8 @@ venv.bak/
 # Rope project settings
 .ropeproject
 
+
+
 # mkdocs documentation
 /site
 
@@ -216,3 +218,11 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Data outputs
+data/digitized/*
+!data/digitized/.gitkeep
+
+# Large raw images by default
+data/raw/*
+!data/raw/.gitkeep

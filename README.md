@@ -1,2 +1,48 @@
 # physkit-digitizer
-Scientific plot digitization tools for converting raster graph images into calibrated numerical curves, with support for axis calibration, curve extraction, CSV export, and later integration with physkit workflows.
+
+`physkit-digitizer` is a small scientific plot digitization package.
+
+Its purpose is to convert raster plot images into calibrated numerical curves.
+
+The core workflow is
+
+$$
+I(u,v)
+\rightarrow
+(u_i,v_i)
+\rightarrow
+(x_i,y_i)
+\rightarrow
+\mathcal{C}.
+$$
+
+where
+
+- $I(u,v)$ is the image,
+- $(u,v)$ are pixel coordinates,
+- $(x,y)$ are calibrated plot coordinates,
+- $\mathcal{C}$ is a digitized curve.
+
+## Scope
+
+This package provides:
+
+- image loading,
+- axis calibration,
+- pixel-to-data coordinate transforms,
+- manual curve tracing,
+- color-based curve extraction,
+- curve cleaning,
+- CSV export.
+
+It does not implement thermodynamic phase-diagram analysis directly. Phase-diagram interpretation belongs in `physkit`.
+
+## Installation
+
+```bash
+pip install -e ".[dev]"
+
+## License
+Apache=2.0
+
+
