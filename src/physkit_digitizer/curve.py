@@ -1,7 +1,10 @@
 # src/physkit_digitizer/curve.py
 from __future__ import annotations
 
+import json
 from dataclasses import dataclass
+from pathlib import Path
+from typing import Any
 
 import numpy as np
 from numpy.typing import NDArray
@@ -35,6 +38,41 @@ class DigitizedCurve:
                 f"Got x.shape={self.x.shape}, y.shape={self.y.shape}."
             )
 
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "name": self.name,
+            "x_label": self.x_label,
+            "y_label": self.y_label,
+            "x": self.x.tolist(),
+            "y": self.y.tolist(),
+        }
+
+    @classmethod
+    def from_dict(cls, data: dict[str, Any]) -> DigitizedCurve:
+        return cls(
+            name=str(data["name"]),
+            x=np.asarray(data["x"], dtype=np.float64),
+            y=np.asarray(data["y"], dtype=np.float64),
+            x_label=str(data.get("x_label", "x")),
+            y_label=str(data.get("y_label", "y")),
+        )
+
+    def save_json(self, path: str | Path) -> None:
+        json_path = Path(path)
+        json_path.parent.mkdir(parents=True, exist_ok=True)
+
+        with json_path.open("w", encoding="utf-8") as file:
+            json.dump(self.to_dict(), file, indent=2)
+
+    @classmethod
+    def from_json(cls, path: str | Path) -> DigitizedCurve:
+        json_path = Path(path)
+
+        with json_path.open("r", encoding="utf-8") as file:
+            data = json.load(file)
+
+        return cls.from_dict(data)
+    
 
 @dataclass(frozen=True)
 class PixelCurve:
